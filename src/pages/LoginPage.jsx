@@ -1,18 +1,45 @@
+import { useState } from 'react';
+import { useAuth } from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 
-function LoginPage() {
+export default function LoginPage() {
+  const { signIn } = useAuth();
   const navigate = useNavigate();
 
-  function handleLogin() {
-    navigate('/dashboard');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    console.log('clicou no login');
+
+    try {
+      await signIn(username, password);
+      navigate('/dashboard');
+    } catch (error) {
+      alert('Login inválido');
+    }
   }
 
   return (
-    <div>
-      <h2>Login Page</h2>
-      <button onClick={handleLogin}>Entrar</button>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <h2>Login</h2>
+
+      <input
+        placeholder="Username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+      />
+
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+
+      <button type="submit">Entrar</button>
+    </form>
   );
 }
-
-export default LoginPage;
