@@ -1,24 +1,28 @@
 # DrivalTech Frontend
 
-## 📦 Overview
+## Overview
 
 Frontend application for the DrivalTech Finance system, built with React and Vite.
 
-## 🚀 Features
+## Features
 
 - User authentication with JWT
-- Login integration with backend API
+- Login and logout flow
 - Protected routes
 - Axios client with automatic token injection
+- Dashboard integration with backend API
+- Display of financial summary (income, expense, balance)
+- Currency formatting (BRL)
+- Basic UI with responsive dashboard cards
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - React
 - Vite
 - Axios
 - React Router
 
-## ⚙️ Running the Project
+## Running the Project
 
 ### 1. Install dependencies
 
@@ -38,7 +42,7 @@ Frontend will run on:
 http://localhost:5173
 ```
 
-## 🔗 Backend
+## Backend
 
 Make sure the backend is running at:
 
@@ -46,7 +50,7 @@ Make sure the backend is running at:
 http://localhost:8080
 ```
 
-## 🔐 Authentication Flow
+## Authentication Flow
 
 1. User logs in via `/auth/login`
 2. Backend returns JWT token
@@ -54,8 +58,33 @@ http://localhost:8080
 4. Axios sends token in every request
 5. Protected routes restrict access
 
-## 🚀 Next Steps
+## Dashboard
 
-- Dashboard integration
-- Transactions listing
-- Data visualization
+The dashboard displays real financial data fetched from the backend API.
+
+### Endpoint used
+
+```http
+GET /dashboard/summary
+```
+
+### Data displayed
+
+- Income
+- Expense
+- Balance
+
+### Behavior
+
+- Data is loaded on page mount
+- Values are formatted to Brazilian currency (BRL)
+- Requires authentication (JWT)
+
+This ensures real-time integration between frontend and backend.
+
+## Next Steps
+
+- Transactions listing (CRUD + filters)
+- UI improvements (loading, error handling)
+- Charts and data visualization
+- Global state management (Context API)
