@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { useAuth } from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
 
 export default function LoginPage() {
-  const { signIn } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const [username, setUsername] = useState('');
@@ -15,7 +15,7 @@ export default function LoginPage() {
     console.log('clicou no login');
 
     try {
-      await signIn(username, password);
+      await login(username, password);
       navigate('/dashboard');
     } catch (error) {
       alert('Login inválido');
