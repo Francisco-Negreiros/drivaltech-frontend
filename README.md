@@ -4,25 +4,46 @@
 
 Frontend application for the DrivalTech Finance system, built with React and Vite.
 
-## Features
+This application provides a complete financial management interface, including authentication, dashboard visualization, and full transaction management.
+
+---
+
+## 🚀 Features
+
+### 🔐 Authentication
 
 - User authentication with JWT
 - Login and logout flow
 - Protected routes
 - Axios client with automatic token injection
-- Dashboard integration with backend API
+
+### 📊 Dashboard
+
+- Integration with backend API
 - Display of financial summary (income, expense, balance)
 - Currency formatting (BRL)
-- Basic UI with responsive dashboard cards
 
-## Tech Stack
+### 💰 Transactions (CRUD)
+
+- List all transactions
+- Create new transaction
+- Edit existing transaction
+- Delete transaction
+- Associate transactions with categories
+- Category selection via dropdown
+
+---
+
+## 🧠 Tech Stack
 
 - React
 - Vite
 - Axios
 - React Router
 
-## Running the Project
+---
+
+## ▶️ Running the Project
 
 ### 1. Install dependencies
 
@@ -42,7 +63,9 @@ Frontend will run on:
 http://localhost:5173
 ```
 
-## Backend
+---
+
+## 🔗 Backend
 
 Make sure the backend is running at:
 
@@ -50,7 +73,9 @@ Make sure the backend is running at:
 http://localhost:8080
 ```
 
-## Authentication Flow
+---
+
+## 🔐 Authentication Flow
 
 1. User logs in via `/auth/login`
 2. Backend returns JWT token
@@ -58,7 +83,9 @@ http://localhost:8080
 4. Axios sends token in every request
 5. Protected routes restrict access
 
-## Dashboard
+---
+
+## 📊 Dashboard
 
 The dashboard displays real financial data fetched from the backend API.
 
@@ -80,11 +107,62 @@ GET /dashboard/summary
 - Values are formatted to Brazilian currency (BRL)
 - Requires authentication (JWT)
 
-This ensures real-time integration between frontend and backend.
+---
 
-## Next Steps
+## 💰 Transactions Module
 
-- Transactions listing (CRUD + filters)
-- UI improvements (loading, error handling)
+The Transactions module allows full financial management through a complete CRUD interface.
+
+### ✨ Features
+
+- List all transactions in a table
+- Create new transaction via form
+- Edit existing transactions
+- Delete transactions
+- Associate transactions with categories
+
+### 🔄 API Integration
+
+The frontend consumes the following endpoints:
+
+```http
+GET /transactions
+POST /transactions
+PUT /transactions/{id}
+DELETE /transactions/{id}
+GET /categories
+```
+
+### 📊 Data Handling
+
+- Supports paginated API responses
+- Extracts data from `response.data.data`
+- Handles empty states and errors gracefully
+
+### 🎨 UI Features
+
+- Table-based layout
+- Conditional styling (INCOME / EXPENSE)
+- Currency formatting (BRL)
+- Date formatting (DD/MM/YYYY)
+- Dynamic form (create/edit mode)
+
+---
+
+## ⚠️ Current Limitations
+
+- Navigation menu not yet implemented
+- UI/UX can be improved (layout, spacing, feedback)
+- Authentication flow still being integrated with frontend screens
+
+---
+
+## 🚀 Next Steps
+
+- Authentication UI (login screen integrated with frontend)
+- Navigation (menu/navbar)
+- Categories management
 - Charts and data visualization
 - Global state management (Context API)
+
+---
