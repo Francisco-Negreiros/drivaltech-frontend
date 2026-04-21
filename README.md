@@ -75,13 +75,18 @@ http://localhost:8080
 
 ---
 
-## 🔐 Authentication Flow
+## 🔐 Authentication Flow (Frontend)
 
-1. User logs in via `/auth/login`
-2. Backend returns JWT token
-3. Token is stored in localStorage
-4. Axios sends token in every request
-5. Protected routes restrict access
+The frontend now includes a complete authentication system:
+
+- Login page integrated with backend
+- JWT token stored in localStorage
+- Global authentication state using Context API
+- Protected routes (Dashboard and Transactions)
+- Automatic redirection after login/logout
+- Navbar with navigation and logout
+
+This removes the need for manual authentication via Postman and enables real user interaction.
 
 ---
 
@@ -149,20 +154,19 @@ GET /categories
 
 ---
 
-## ⚠️ Current Limitations
+## 🚀 Current Status
 
-- Navigation menu not yet implemented
-- UI/UX can be improved (layout, spacing, feedback)
-- Authentication flow still being integrated with frontend screens
+- ✅ Auth Flow (Frontend) — COMPLETED
+- ✅ Transactions CRUD — COMPLETED
+- ✅ Dashboard Integration — COMPLETED
 
 ---
 
 ## 🚀 Next Steps
 
-- Authentication UI (login screen integrated with frontend)
-- Navigation (menu/navbar)
-- Categories management
-- Charts and data visualization
-- Global state management (Context API)
+- Navigation improvements (UI/UX)
+- Categories CRUD
+- User management (roles and permissions)
+- Global state improvements
 
 ---
