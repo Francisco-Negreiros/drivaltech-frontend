@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Navbar from '../components/Navbar';
 import {
   getTransactions,
   createTransaction,
@@ -128,124 +129,133 @@ export default function TransactionsPage() {
   }
 
   return (
-    <div className="container">
-      <h1>Transactions</h1>
+    <>
+      <Navbar />
+      <div className="container">
+        <h1>Transactions</h1>
 
-      {/* BOTÃO */}
-      <div style={{ marginBottom: '20px' }}>
-        <button onClick={() => setShowForm(true)}>+ Nova Transação</button>
-      </div>
-
-      {message && <p style={{ color: 'green' }}>{message}</p>}
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-
-      {/* FORM */}
-      {showForm && (
-        <div className="form">
-          <h2>Nova Transação</h2>
-
-          <input
-            placeholder="Descrição"
-            value={formData.description}
-            onChange={(e) =>
-              setFormData({ ...formData, description: e.target.value })
-            }
-          />
-
-          <input
-            type="number"
-            placeholder="Valor"
-            value={formData.amount}
-            onChange={(e) =>
-              setFormData({ ...formData, amount: e.target.value })
-            }
-          />
-
-          <select
-            value={formData.type}
-            onChange={(e) => setFormData({ ...formData, type: e.target.value })}
-          >
-            <option value="INCOME">INCOME</option>
-            <option value="EXPENSE">EXPENSE</option>
-          </select>
-
-          <input
-            type="date"
-            value={formData.date}
-            onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-          />
-
-          <select
-            value={formData.categoryId}
-            onChange={(e) =>
-              setFormData({ ...formData, categoryId: e.target.value })
-            }
-          >
-            <option value="">Selecione uma categoria</option>
-
-            {Array.isArray(categories) &&
-              categories.map((c) => (
-                <option key={c.id} value={c.id}>
-                  {c.name}
-                </option>
-              ))}
-          </select>
-
-          <div style={{ display: 'flex', gap: '10px' }}>
-            <button onClick={handleSubmit} disabled={loading}>
-              {loading ? 'Salvando...' : isEditing ? 'Atualizar' : 'Salvar'}
-            </button>
-
-            <button onClick={() => setShowForm(false)}>Cancelar</button>
-          </div>
+        {/* BOTÃO */}
+        <div style={{ marginBottom: '20px' }}>
+          <button onClick={() => setShowForm(true)}>+ Nova Transação</button>
         </div>
-      )}
 
-      {console.log('RENDER:', transactions)}
-      {console.log('RENDER CATEGORIES:', categories)}
+        {message && <p style={{ color: 'green' }}>{message}</p>}
+        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
 
-      {/* TABELA */}
-      {transactions.length === 0 ? (
-        <p>Nenhuma transação encontrada</p>
-      ) : (
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Description</th>
-              <th>Type</th>
-              <th>Amount</th>
-              <th>Date</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
+        {/* FORM */}
+        {showForm && (
+          <div className="form">
+            <h2>Nova Transação</h2>
 
-          <tbody>
-            {transactions.map((t) => (
-              <tr key={t.id}>
-                <td>{t.description}</td>
+            <input
+              placeholder="Descrição"
+              value={formData.description}
+              onChange={(e) =>
+                setFormData({ ...formData, description: e.target.value })
+              }
+            />
 
-                <td
-                  style={{
-                    color: t.type === 'INCOME' ? 'green' : 'red',
-                    fontWeight: 'bold',
-                  }}
-                >
-                  {t.type}
-                </td>
+            <input
+              type="number"
+              placeholder="Valor"
+              value={formData.amount}
+              onChange={(e) =>
+                setFormData({ ...formData, amount: e.target.value })
+              }
+            />
 
-                <td>{formatCurrency(t.amount)}</td>
+            <select
+              value={formData.type}
+              onChange={(e) =>
+                setFormData({ ...formData, type: e.target.value })
+              }
+            >
+              <option value="INCOME">INCOME</option>
+              <option value="EXPENSE">EXPENSE</option>
+            </select>
 
-                <td>{formatDate(t.date)}</td>
+            <input
+              type="date"
+              value={formData.date}
+              onChange={(e) =>
+                setFormData({ ...formData, date: e.target.value })
+              }
+            />
 
-                <td style={{ display: 'flex', gap: '10px' }}>
-                  <button onClick={() => handleEdit(t)}>✏️ Editar</button>
-                  <button onClick={() => handleDelete(t.id)}>🗑️ Excluir</button>
-                </td>
+            <select
+              value={formData.categoryId}
+              onChange={(e) =>
+                setFormData({ ...formData, categoryId: e.target.value })
+              }
+            >
+              <option value="">Selecione uma categoria</option>
+
+              {Array.isArray(categories) &&
+                categories.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.name}
+                  </option>
+                ))}
+            </select>
+
+            <div style={{ display: 'flex', gap: '10px' }}>
+              <button onClick={handleSubmit} disabled={loading}>
+                {loading ? 'Salvando...' : isEditing ? 'Atualizar' : 'Salvar'}
+              </button>
+
+              <button onClick={() => setShowForm(false)}>Cancelar</button>
+            </div>
+          </div>
+        )}
+
+        {console.log('RENDER:', transactions)}
+        {console.log('RENDER CATEGORIES:', categories)}
+
+        {/* TABELA */}
+        {transactions.length === 0 ? (
+          <p>Nenhuma transação encontrada</p>
+        ) : (
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-    </div>
+            </thead>
+
+            <tbody>
+              {transactions.map((t) => (
+                <tr key={t.id}>
+                  <td>{t.description}</td>
+
+                  <td
+                    style={{
+                      color: t.type === 'INCOME' ? 'green' : 'red',
+                      fontWeight: 'bold',
+                    }}
+                  >
+                    {t.type}
+                  </td>
+
+                  <td>{formatCurrency(t.amount)}</td>
+
+                  <td>{formatDate(t.date)}</td>
+
+                  <td style={{ display: 'flex', gap: '10px' }}>
+                    <button onClick={() => handleEdit(t)}>✏️ Editar</button>
+                    <button onClick={() => handleDelete(t.id)}>
+                      🗑️ Excluir
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
+    </>
   );
 }

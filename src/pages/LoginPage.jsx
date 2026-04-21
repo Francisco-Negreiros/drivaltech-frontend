@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useAuth from '../hooks/useAuth';
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
 
 export default function LoginPage() {
-  const { login } = useAuth();
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const [username, setUsername] = useState('');
@@ -15,7 +16,18 @@ export default function LoginPage() {
     console.log('clicou no login');
 
     try {
-      await login(username, password);
+      const response = await fetch('http://localhost:8080/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      const data = await response.json();
+
+      login(data.token);
+
       navigate('/dashboard');
     } catch (error) {
       alert('Login inválido');
