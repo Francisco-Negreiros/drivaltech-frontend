@@ -191,9 +191,9 @@ export default function TransactionsPage() {
               <option value="">Selecione uma categoria</option>
 
               {Array.isArray(categories) &&
-                categories.map((c) => (
-                  <option key={c.id} value={c.id}>
-                    {c.name}
+                categories.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.name}
                   </option>
                 ))}
             </select>

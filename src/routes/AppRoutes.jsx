@@ -3,6 +3,7 @@ import LoginPage from '../pages/LoginPage';
 import ProtectedRoute from './ProtectedRoute';
 import DashboardPage from '../pages/DashboardPage';
 import TransactionsPage from '../pages/TransactionsPage';
+import CategoriesPage from '../pages/CategoriesPage';
 
 export default function AppRoutes() {
   return (
@@ -24,6 +25,14 @@ export default function AppRoutes() {
           element={
             <ProtectedRoute>
               <TransactionsPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/categories"
+          element={
+            <ProtectedRoute>
+              <CategoriesPage />
             </ProtectedRoute>
           }
         />

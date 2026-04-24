@@ -32,6 +32,17 @@ This application provides a complete financial management interface, including a
 - Associate transactions with categories
 - Category selection via dropdown
 
+### 📂 Categories
+
+- Full CRUD (Create, Read, Update, Delete)
+- Category type support (INCOME / EXPENSE)
+- User-based data isolation
+- Table-based UI with actions (Edit / Delete)
+- Dynamic form with create/edit modes
+- Visual indicators by type:
+  - 🟢 Income
+  - 🔴 Expense
+
 ---
 
 ## 🧠 Tech Stack
@@ -156,9 +167,10 @@ GET /categories
 
 ## 🚀 Current Status
 
-- ✅ Auth Flow (Frontend) — COMPLETED
-- ✅ Transactions CRUD — COMPLETED
-- ✅ Dashboard Integration — COMPLETED
+- ✅ Auth Flow (JWT + Protected Routes)
+- ✅ Dashboard Integration
+- ✅ Transactions CRUD
+- ✅ Categories CRUD
 
 ---
 
