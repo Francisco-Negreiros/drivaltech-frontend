@@ -14,6 +14,9 @@ export default function Navbar() {
         <Link to="/transactions" style={styles.link}>
           Transactions
         </Link>
+        <Link to="/categories" style={styles.link}>
+          Categories
+        </Link>
       </div>
 
       <div style={styles.right}>
