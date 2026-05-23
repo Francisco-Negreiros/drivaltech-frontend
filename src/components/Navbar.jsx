@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 
@@ -6,50 +5,48 @@ export default function Navbar() {
   const { logout } = useContext(AuthContext);
 
   return (
-    <nav style={styles.nav}>
-      <div style={styles.left}>
-        <Link to="/dashboard" style={styles.link}>
-          Dashboard
-        </Link>
-        <Link to="/transactions" style={styles.link}>
-          Transactions
-        </Link>
-        <Link to="/categories" style={styles.link}>
-          Categories
-        </Link>
-      </div>
+    <div
+      style={{
+        width: '100%',
+        height: '60px',
+        background: '#111827',
+        color: '#fff',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: '0 20px',
+        boxSizing: 'border-box',
+      }}
+    >
+      {/* LEFT */}
+      <h2 style={{ fontSize: '22px' }}>DrivalTech</h2>
 
-      <div style={styles.right}>
-        <button onClick={logout} style={styles.button}>
-          Sair
+      {/* RIGHT */}
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '10px',
+          flexShrink: 0,
+        }}
+      >
+        <span>Usuário</span>
+
+        <button
+          onClick={logout}
+          style={{
+            padding: '6px 12px',
+            background: '#dc2626',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          Logout
         </button>
       </div>
-    </nav>
+    </div>
   );
 }
-
-const styles = {
-  nav: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    padding: '16px',
-    backgroundColor: '#1f2937',
-  },
-  left: {
-    display: 'flex',
-    gap: '16px',
-  },
-  right: {},
-  link: {
-    color: '#fff',
-    textDecoration: 'none',
-    fontWeight: 'bold',
-  },
-  button: {
-    backgroundColor: '#ef4444',
-    color: '#fff',
-    border: 'none',
-    padding: '8px 12px',
-    cursor: 'pointer',
-  },
-};

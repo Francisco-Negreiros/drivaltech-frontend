@@ -61,63 +61,67 @@ export default function CategoriesPage() {
   }
 
   return (
-    <>
-      <Navbar />
+    <div>
+      <h1>Categories</h1>
+      <form onSubmit={handleSubmit}>
+        <input
+          placeholder="Nova categoria"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
 
-      <div>
-        <h1>Categories</h1>
-        <form onSubmit={handleSubmit}>
-          <input
-            placeholder="Nova categoria"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+        <select value={type} onChange={(e) => setType(e.target.value)}>
+          <option value="INCOME">Income</option>
+          <option value="EXPENSE">Expense</option>
+        </select>
 
-          <select value={type} onChange={(e) => setType(e.target.value)}>
-            <option value="INCOME">Income</option>
-            <option value="EXPENSE">Expense</option>
-          </select>
+        <button type="submit">
+          {editingCategory ? 'Atualizar' : 'Adicionar'}
+        </button>
+      </form>
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
 
-          <button type="submit">
-            {editingCategory ? 'Atualizar' : 'Adicionar'}
-          </button>
-        </form>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Type</th>
-              <th>Actions</th>
+        <tbody>
+          {categories?.map((category) => (
+            <tr key={category.id}>
+              <td>{category.name}</td>
+
+              <td>
+                <span
+                  style={{
+                    color: category.type === 'INCOME' ? 'green' : 'red',
+                  }}
+                >
+                  {category.type}
+                </span>
+              </td>
+
+              <td style={{ display: 'flex', gap: '10px' }}>
+                <button
+                  className="button button-edit"
+                  onClick={() => handleEdit(category)}
+                >
+                  ✏️ Editar
+                </button>
+
+                <button
+                  className="button button-delete"
+                  onClick={() => handleDelete(category.id)}
+                >
+                  🗑️ Excluir
+                </button>
+              </td>
             </tr>
-          </thead>
-
-          <tbody>
-            {categories?.map((category) => (
-              <tr key={category.id}>
-                <td>{category.name}</td>
-
-                <td>
-                  <span
-                    style={{
-                      color: category.type === 'INCOME' ? 'green' : 'red',
-                    }}
-                  >
-                    {category.type}
-                  </span>
-                </td>
-
-                <td>
-                  <button onClick={() => handleEdit(category)}>Edit</button>
-
-                  <button onClick={() => handleDelete(category.id)}>
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }

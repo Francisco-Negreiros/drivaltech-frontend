@@ -27,28 +27,31 @@ export default function DashboardPage() {
   }
 
   return (
-    <>
-      <Navbar />
-      <div className="container">
-        <h1 className="title">Dashboard</h1>
+    <div className="container section">
+      <h1 className="title">Dashboard</h1>
 
-        <div className="card-container">
-          <div className="card income">
-            <h2>Income</h2>
-            <p>{formatCurrency(summary.income)}</p>
-          </div>
+      <div className="card-container">
+        <div className="card income">
+          <h2>Income</h2>
+          <p style={{ color: 'white', fontWeight: 'bold', fontSize: '24px' }}>
+            {formatCurrency(summary.income)}
+          </p>
+        </div>
 
-          <div className="card expense">
-            <h2>Expense</h2>
-            <p>{formatCurrency(summary.expense)}</p>
-          </div>
+        <div className="card expense">
+          <h2>Expense</h2>
+          <p style={{ color: 'white', fontWeight: 'bold', fontSize: '24px' }}>
+            {formatCurrency(summary.expense)}
+          </p>
+        </div>
 
-          <div className="card balance">
-            <h2>Balance</h2>
-            <p>{formatCurrency(summary.balance)}</p>
-          </div>
+        <div className="card balance">
+          <h2>Balance</h2>
+          <p style={{ color: 'white', fontWeight: 'bold', fontSize: '24px' }}>
+            {formatCurrency(summary.balance)}
+          </p>
         </div>
       </div>
-    </>
+    </div>
   );
 }
