@@ -16,12 +16,16 @@ This application provides a complete financial management interface, including a
 - Login and logout flow
 - Protected routes
 - Axios client with automatic token injection
+- Shared layout with protected navigation
 
 ### 📊 Dashboard
 
 - Integration with backend API
 - Display of financial summary (income, expense, balance)
 - Currency formatting (BRL)
+- Dashboard-style UI layout
+- Financial cards with visual indicators
+- Improved UI/UX and spacing consistency
 
 ### 💰 Transactions (CRUD)
 
@@ -31,6 +35,8 @@ This application provides a complete financial management interface, including a
 - Delete transaction
 - Associate transactions with categories
 - Category selection via dropdown
+- Reusable table styling
+- Improved form UX and button consistency
 
 ### 📂 Categories
 
@@ -42,6 +48,20 @@ This application provides a complete financial management interface, including a
 - Visual indicators by type:
   - 🟢 Income
   - 🔴 Expense
+- Sidebar-based navigation access
+- Shared UI styling system
+
+---
+
+### 🎨 UI / Layout
+
+- Shared layout architecture
+- Professional Sidebar and Navbar
+- Responsive-friendly layout foundation
+- Reusable global styling system
+- Navigation icons with react-icons
+- Modern dashboard-style interface
+- Consistent spacing and visual hierarchy
 
 ---
 

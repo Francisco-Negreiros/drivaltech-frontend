@@ -28,7 +28,7 @@ export default function TransactionsPage() {
     categoryId: '',
   });
 
-  // 🔥 Função única para carregar dados
+  // Função única para carregar dados
   async function loadTransactions() {
     try {
       const response = await getTransactions();
@@ -48,7 +48,7 @@ export default function TransactionsPage() {
     loadCategories();
   }, []);
 
-  // 🔥 Criar nova transação
+  // Criar nova transação
   async function handleSubmit() {
     setLoading(true);
     setMessage('');
@@ -129,133 +129,134 @@ export default function TransactionsPage() {
   }
 
   return (
-    <>
-      <Navbar />
-      <div className="container">
-        <h1>Transactions</h1>
+    <div className="container section">
+      <h1>Transactions</h1>
 
-        {/* BOTÃO */}
-        <div style={{ marginBottom: '20px' }}>
-          <button onClick={() => setShowForm(true)}>+ Nova Transação</button>
-        </div>
-
-        {message && <p style={{ color: 'green' }}>{message}</p>}
-        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-
-        {/* FORM */}
-        {showForm && (
-          <div className="form">
-            <h2>Nova Transação</h2>
-
-            <input
-              placeholder="Descrição"
-              value={formData.description}
-              onChange={(e) =>
-                setFormData({ ...formData, description: e.target.value })
-              }
-            />
-
-            <input
-              type="number"
-              placeholder="Valor"
-              value={formData.amount}
-              onChange={(e) =>
-                setFormData({ ...formData, amount: e.target.value })
-              }
-            />
-
-            <select
-              value={formData.type}
-              onChange={(e) =>
-                setFormData({ ...formData, type: e.target.value })
-              }
-            >
-              <option value="INCOME">INCOME</option>
-              <option value="EXPENSE">EXPENSE</option>
-            </select>
-
-            <input
-              type="date"
-              value={formData.date}
-              onChange={(e) =>
-                setFormData({ ...formData, date: e.target.value })
-              }
-            />
-
-            <select
-              value={formData.categoryId}
-              onChange={(e) =>
-                setFormData({ ...formData, categoryId: e.target.value })
-              }
-            >
-              <option value="">Selecione uma categoria</option>
-
-              {Array.isArray(categories) &&
-                categories.map((category) => (
-                  <option key={category.id} value={category.id}>
-                    {category.name}
-                  </option>
-                ))}
-            </select>
-
-            <div style={{ display: 'flex', gap: '10px' }}>
-              <button onClick={handleSubmit} disabled={loading}>
-                {loading ? 'Salvando...' : isEditing ? 'Atualizar' : 'Salvar'}
-              </button>
-
-              <button onClick={() => setShowForm(false)}>Cancelar</button>
-            </div>
-          </div>
-        )}
-
-        {console.log('RENDER:', transactions)}
-        {console.log('RENDER CATEGORIES:', categories)}
-
-        {/* TABELA */}
-        {transactions.length === 0 ? (
-          <p>Nenhuma transação encontrada</p>
-        ) : (
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Description</th>
-                <th>Type</th>
-                <th>Amount</th>
-                <th>Date</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {transactions.map((t) => (
-                <tr key={t.id}>
-                  <td>{t.description}</td>
-
-                  <td
-                    style={{
-                      color: t.type === 'INCOME' ? 'green' : 'red',
-                      fontWeight: 'bold',
-                    }}
-                  >
-                    {t.type}
-                  </td>
-
-                  <td>{formatCurrency(t.amount)}</td>
-
-                  <td>{formatDate(t.date)}</td>
-
-                  <td style={{ display: 'flex', gap: '10px' }}>
-                    <button onClick={() => handleEdit(t)}>✏️ Editar</button>
-                    <button onClick={() => handleDelete(t.id)}>
-                      🗑️ Excluir
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
+      {/* BOTÃO */}
+      <div style={{ marginBottom: '20px' }}>
+        <button onClick={() => setShowForm(true)}>+ Nova Transação</button>
       </div>
-    </>
+
+      {message && <p style={{ color: 'green' }}>{message}</p>}
+      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+
+      {/* FORM */}
+      {showForm && (
+        <div className="form">
+          <h2>Nova Transação</h2>
+
+          <input
+            placeholder="Descrição"
+            value={formData.description}
+            onChange={(e) =>
+              setFormData({ ...formData, description: e.target.value })
+            }
+          />
+
+          <input
+            type="number"
+            placeholder="Valor"
+            value={formData.amount}
+            onChange={(e) =>
+              setFormData({ ...formData, amount: e.target.value })
+            }
+          />
+
+          <select
+            value={formData.type}
+            onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+          >
+            <option value="INCOME">INCOME</option>
+            <option value="EXPENSE">EXPENSE</option>
+          </select>
+
+          <input
+            type="date"
+            value={formData.date}
+            onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+          />
+
+          <select
+            value={formData.categoryId}
+            onChange={(e) =>
+              setFormData({ ...formData, categoryId: e.target.value })
+            }
+          >
+            <option value="">Selecione uma categoria</option>
+
+            {Array.isArray(categories) &&
+              categories.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              ))}
+          </select>
+
+          <div style={{ display: 'flex', gap: '10px' }}>
+            <button onClick={handleSubmit} disabled={loading}>
+              {loading ? 'Salvando...' : isEditing ? 'Atualizar' : 'Salvar'}
+            </button>
+
+            <button onClick={() => setShowForm(false)}>Cancelar</button>
+          </div>
+        </div>
+      )}
+
+      {console.log('RENDER:', transactions)}
+      {console.log('RENDER CATEGORIES:', categories)}
+
+      {/* TABELA */}
+      {transactions.length === 0 ? (
+        <p>Nenhuma transação encontrada</p>
+      ) : (
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Type</th>
+              <th>Amount</th>
+              <th>Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {transactions.map((t) => (
+              <tr key={t.id}>
+                <td>{t.description}</td>
+
+                <td
+                  style={{
+                    color: t.type === 'INCOME' ? 'green' : 'red',
+                    fontWeight: 'bold',
+                  }}
+                >
+                  {t.type}
+                </td>
+
+                <td>{formatCurrency(t.amount)}</td>
+
+                <td>{formatDate(t.date)}</td>
+
+                <td style={{ display: 'flex', gap: '10px' }}>
+                  <button
+                    className="button button-edit"
+                    onClick={() => handleEdit(t)}
+                  >
+                    ✏️ Editar
+                  </button>
+                  <button
+                    className="button button-delete"
+                    onClick={() => handleDelete(t.id)}
+                  >
+                    🗑️ Excluir
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </div>
   );
 }

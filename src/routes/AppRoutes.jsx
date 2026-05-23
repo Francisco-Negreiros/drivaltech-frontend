@@ -4,6 +4,7 @@ import ProtectedRoute from './ProtectedRoute';
 import DashboardPage from '../pages/DashboardPage';
 import TransactionsPage from '../pages/TransactionsPage';
 import CategoriesPage from '../pages/CategoriesPage';
+import Layout from "../components/Layout";
 
 export default function AppRoutes() {
   return (
@@ -15,7 +16,9 @@ export default function AppRoutes() {
           path="/dashboard"
           element={
             <ProtectedRoute>
-              <DashboardPage />
+              <Layout>
+                <DashboardPage />
+              </Layout>
             </ProtectedRoute>
           }
         />
@@ -24,7 +27,9 @@ export default function AppRoutes() {
           path="/transactions"
           element={
             <ProtectedRoute>
-              <TransactionsPage />
+              <Layout>
+                <TransactionsPage />
+              </Layout>
             </ProtectedRoute>
           }
         />
@@ -32,7 +37,9 @@ export default function AppRoutes() {
           path="/categories"
           element={
             <ProtectedRoute>
-              <CategoriesPage />
+              <Layout>
+                <CategoriesPage />
+              </Layout>
             </ProtectedRoute>
           }
         />
