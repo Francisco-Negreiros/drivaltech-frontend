@@ -1,10 +1,12 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { AdminRoute } from './AdminRoute';
 import LoginPage from '../pages/LoginPage';
 import ProtectedRoute from './ProtectedRoute';
 import DashboardPage from '../pages/DashboardPage';
 import TransactionsPage from '../pages/TransactionsPage';
 import CategoriesPage from '../pages/CategoriesPage';
-import Layout from "../components/Layout";
+import { UsersPage } from '../pages/UsersPage';
+import Layout from '../components/Layout';
 
 export default function AppRoutes() {
   return (
@@ -41,6 +43,16 @@ export default function AppRoutes() {
                 <CategoriesPage />
               </Layout>
             </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/users"
+          element={
+            <AdminRoute>
+              <Layout>
+                <UsersPage />
+              </Layout>
+            </AdminRoute>
           }
         />
       </Routes>

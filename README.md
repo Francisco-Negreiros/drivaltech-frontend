@@ -15,8 +15,11 @@ This application provides a complete financial management interface, including a
 - User authentication with JWT
 - Login and logout flow
 - Protected routes
+- Admin-only routes
+- Role-based authorization
 - Axios client with automatic token injection
 - Shared layout with protected navigation
+- Logged user display in navbar
 
 ### 📊 Dashboard
 
@@ -50,6 +53,27 @@ This application provides a complete financial management interface, including a
   - 🔴 Expense
 - Sidebar-based navigation access
 - Shared UI styling system
+
+---
+
+### 👥 Users Management
+
+- List all users
+- Create new users
+- Edit existing users
+- Change user roles (ADMIN / USER)
+- Deactivate users
+- Reactivate users
+- User search and filtering
+- Results counter
+- Empty state handling
+- Success and error notifications
+- Auto-dismiss messages
+- Confirmation dialogs
+- Edit cancellation flow
+- Admin-only access
+- Role-based navigation rendering
+- Logged user display in navbar
 
 ---
 
@@ -187,18 +211,23 @@ GET /categories
 
 ## 🚀 Current Status
 
-- ✅ Auth Flow (JWT + Protected Routes)
+- ✅ Auth Flow (JWT + Role-Based Authorization)
 - ✅ Dashboard Integration
 - ✅ Transactions CRUD
 - ✅ Categories CRUD
+- ✅ Users Management
+- ✅ Admin Route Protection
 
 ---
 
 ## 🚀 Next Steps
 
-- Navigation improvements (UI/UX)
-- Categories CRUD
-- User management (roles and permissions)
+- Search and filtering for Categories
+- Search and filtering for Transactions
+- Pagination improvements
+- Advanced filtering options
+- Password reset flow
+- UI/UX refinements
 - Global state improvements
 
 ---

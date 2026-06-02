@@ -7,7 +7,11 @@ import Navbar from '../components/Navbar';
 export default function DashboardPage() {
   const [summary, setSummary] = useState(null);
 
+  const { isAdmin, roles } = useContext(AuthContext);
+
   const { logout } = useContext(AuthContext);
+
+  console.log(isAdmin);
 
   useEffect(() => {
     async function loadData() {

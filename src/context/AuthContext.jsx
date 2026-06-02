@@ -1,9 +1,20 @@
 import { createContext, useState } from 'react';
+import { jwtDecode } from 'jwt-decode';
 
 export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  const [token, setToken] = useState(localStorage.getItem('token') || null);
+  const savedToken = localStorage.getItem('token');
+
+  const [token, setToken] = useState(savedToken || null);
+
+  const decodedToken = token ? jwtDecode(token) : null;
+
+  const roles = decodedToken?.roles || [];
+
+  const username = decodedToken?.sub || '';
+
+  const isAdmin = roles.includes('ROLE_ADMIN');
 
   function login(newToken) {
     localStorage.setItem('token', newToken);
@@ -20,6 +31,9 @@ export function AuthProvider({ children }) {
       value={{
         token,
         isAuthenticated: !!token,
+        username,
+        roles,
+        isAdmin,
         login,
         logout,
       }}
