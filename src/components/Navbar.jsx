@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 
 export default function Navbar() {
-  const { logout } = useContext(AuthContext);
+  const { logout, username, isAdmin } = useContext(AuthContext);
 
   return (
     <div
@@ -31,6 +31,21 @@ export default function Navbar() {
         }}
       >
         <span>Usuário</span>
+
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-end',
+            marginRight: '15px',
+            color: '#fff',
+            fontSize: '14px',
+          }}
+        >
+          <strong>{username}</strong>
+
+          <span>{isAdmin ? '🛡️ ADMIN' : '👤 USER'}</span>
+        </div>
 
         <button
           onClick={logout}

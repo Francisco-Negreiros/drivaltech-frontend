@@ -1,7 +1,10 @@
 import { NavLink } from 'react-router-dom';
 import { FaChartPie, FaExchangeAlt, FaTags } from 'react-icons/fa';
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
 
 export default function Sidebar() {
+  const { isAdmin, username } = useContext(AuthContext);
   const linkStyle = {
     padding: '12px',
     textDecoration: 'none',
@@ -66,6 +69,20 @@ export default function Sidebar() {
           Categories
         </div>
       </NavLink>
+      {isAdmin && (
+        <NavLink
+          to="/users"
+          style={({ isActive }) => ({
+            ...linkStyle,
+            background: isActive ? '#374151' : 'transparent',
+            fontWeight: isActive ? 'bold' : 'normal',
+          })}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            👤 Users
+          </div>
+        </NavLink>
+      )}
     </div>
   );
 }
